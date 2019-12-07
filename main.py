@@ -19,7 +19,7 @@ def create_similarity_matrix():
     return df,cosine_sim
 
 # defining a function that recommends 10 most similar movies
-def recommend(movie):
+def recommend_movie(movie):
     movie = movie.lower()
     data, sim = create_similarity_matrix()
     # check if the movie is in our database or not
@@ -56,7 +56,7 @@ def home():
 @app.route("/recommend")
 def recommend():
     movie = request.args.get('movie')
-    r = recommend(movie)
+    r = recommend_movie(movie)
     movie = movie.upper()
     if type(r)==type('string'):
         return render_template('recommend.html',movie=movie,r=r,t='s')
